@@ -6,8 +6,9 @@ import authRoutes from "./routes/auth.js"
 import videoRoutes from "./routes/video.js"
 import commentRoutes from "./routes/comment.js"
 import cookieParser from "cookie-parser"
-
+import cors from "cors"
 const app=express()
+
 dotenv.config()
 const connect=()=>{
   mongoose.connect(process.env.MONGO).then(()=>{
@@ -16,7 +17,7 @@ const connect=()=>{
     throw err
   })
 }
-
+app.use(cors());
 app.use(cookieParser())
 app.use(express.json())
 app.use("/api/auth",authRoutes) 
@@ -39,5 +40,5 @@ app.use((err,req,res,next)=>{
 
 app.listen(8081,()=>{
     connect()
-    console.log("Server is running on port 8080")
+    console.log("Server is running on port 8081")
 })
