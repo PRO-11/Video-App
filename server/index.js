@@ -7,6 +7,7 @@ import videoRoutes from "./routes/video.js"
 import commentRoutes from "./routes/comment.js"
 import cookieParser from "cookie-parser"
 import cors from "cors"
+import path from "path"
 const app=express()
 
 dotenv.config()
@@ -37,6 +38,15 @@ app.use((err,req,res,next)=>{
         message
     })
 })
+
+if(process.env.NODE_ENV=='production'){
+  
+  console.log("Serve file")
+  app.get('/',(req,res)=>{
+      app.use(express.static(path.resolve(__dirname,'build')))
+      res.sendFile(path.resolve(__dirname,'build','index.html'))
+  })
+}
 
 app.listen(8081,()=>{
     connect()
