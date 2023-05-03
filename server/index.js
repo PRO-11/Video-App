@@ -26,6 +26,14 @@ app.use("/api/videos",videoRoutes)
 app.use("/api/comments",commentRoutes)
 
 
+if(process.env.NODE_ENV=='production'){
+  const path = require('path')
+  console.log("Serve file")
+  app.get('/',(req,res)=>{
+      app.use(express.static(path.resolve(__dirname,'frontend','build')))
+      res.sendFile(path.resolve(__dirname,'frontend','build','index.html'))
+  })
+}
 //error handling middleware
 app.use((err,req,res,next)=>{
     const status=err.status || 500
