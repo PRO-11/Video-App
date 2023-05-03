@@ -26,11 +26,6 @@ app.use("/api/videos",videoRoutes)
 app.use("/api/comments",commentRoutes)
 
 
-if(process.env.NODE_ENV=='production'){
- 
-  console.log("Serve file")
-  
-}
 //error handling middleware
 app.use((err,req,res,next)=>{
     const status=err.status || 500
