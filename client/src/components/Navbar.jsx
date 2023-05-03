@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import VideoCallOutlinedIcon from "@mui/icons-material/VideoCallOutlined";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Upload from "./Upload";
 
 
 const Container = styled.div`
@@ -42,7 +43,7 @@ const Input = styled.input`
   border: none;
   background-color: transparent;
   outline: none;
-  color: ${({ theme }) => theme.text};
+ 
 `;
 
 const Button = styled.button`
@@ -74,17 +75,21 @@ const Avatar = styled.img`
 `;
 
 const Navbar = () => {
+  const navigate=useNavigate()
   const {currentUser}=useSelector((state)=>state.user)
+  const [q,setQ]=useState("")
+  const [open,setOpen]=useState(false)
   return (
+    <>
     <Container>
       <Wrapper>
         <Search>
-          <Input placeholder="Search" />
-          <SearchOutlinedIcon />
+          <Input placeholder="Search" onChange={(e)=>setQ(e.target.value)}/>
+          <SearchOutlinedIcon onClick={()=>navigate(`/search?q=${q}`)}/>
         </Search>
         {currentUser?
         <User>
-          <VideoCallOutlinedIcon/>
+          <VideoCallOutlinedIcon onClick={()=>setOpen(true)}/>
           <Avatar src={currentUser?.img}/>
           {currentUser.name}
         </User>
@@ -96,6 +101,8 @@ const Navbar = () => {
         </Link>}
       </Wrapper>
     </Container>
+    {open&& <Upload setOpen={setOpen}/>}
+    </>
   );
 };
 
