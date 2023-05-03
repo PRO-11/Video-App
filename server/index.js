@@ -27,7 +27,7 @@ app.use("/api/comments",commentRoutes)
 
 
 if(process.env.NODE_ENV=='production'){
-  const path = require('path')
+ 
   console.log("Serve file")
   
 }
