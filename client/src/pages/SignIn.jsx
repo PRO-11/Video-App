@@ -83,6 +83,18 @@ const SignIn = () => {
       dispatch(loginFailure())
     }
   }
+  const handleSignup=async(e)=>{
+    e.preventDefault()
+    dispatch(loginStart)
+    try {
+      const res=await axios.post("/auth/signup",{name,password,email})
+      console.log(res.data)
+      alert('Account Created! Login To continue')
+      
+    } catch (err) {
+      
+    }
+  }
 
   const signInWithGoogle=async()=>{
     dispatch(loginStart)
@@ -105,7 +117,7 @@ const SignIn = () => {
     <Container>
       <Wrapper>
         <Title>Sign in</Title>
-        <SubTitle>to continue to LamaTube</SubTitle>
+        <SubTitle>to continue to Pro Player</SubTitle>
         <Input placeholder="username" onChange={e=>setName(e.target.value)}/>
         <Input type="password" placeholder="password" onChange={e=>setPassword(e.target.value)} />
         <Button onClick={handleLogin}>Sign in</Button>
@@ -115,7 +127,7 @@ const SignIn = () => {
         <Input placeholder="username" onChange={e=>setName(e.target.value)}/>
         <Input placeholder="email" onChange={e=>setEmail(e.target.value)}/>
         <Input type="password" placeholder="password" onChange={e=>setPassword(e.target.value)}/>
-        <Button>Sign up</Button>
+        <Button onClick={handleSignup}>Sign up</Button>
       </Wrapper>
       <More>
         English(USA)

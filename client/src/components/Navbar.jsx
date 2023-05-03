@@ -43,7 +43,7 @@ const Input = styled.input`
   border: none;
   background-color: transparent;
   outline: none;
- 
+  color: ${({ theme }) => theme.text};
 `;
 
 const Button = styled.button`
@@ -84,7 +84,7 @@ const Navbar = () => {
     <Container>
       <Wrapper>
         <Search>
-          <Input placeholder="Search" onChange={(e)=>setQ(e.target.value)}/>
+          <Input placeholder="Search" onChange={(e)=>setQ(e.target.value)} />
           <SearchOutlinedIcon onClick={()=>navigate(`/search?q=${q}`)}/>
         </Search>
         {currentUser?

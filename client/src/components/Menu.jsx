@@ -22,7 +22,7 @@ import { Link } from "react-router-dom";
 const Container = styled.div`
   flex: 1;
   background-color: ${({ theme }) => theme.bgLighter};
-  height: 100vh;
+  height: auto;
   color: ${({ theme }) => theme.text};
   font-size: 14px;
   position: sticky;

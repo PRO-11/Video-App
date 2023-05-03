@@ -165,7 +165,7 @@ const Video = () => {
     <Container>
       <Content>
         <VideoWrapper>
-         <VideoFrame src={currentVideo.videoUrl} controls/>
+         <VideoFrame src={currentVideo?.videoUrl} controls/>
         </VideoWrapper>
         <Title>{currentVideo?.title}</Title>
         <Details>
@@ -205,12 +205,12 @@ const Video = () => {
             </ChannelDetail>
           </ChannelInfo>
           <Subscribe onClick={handleSub}>
-            {currentUser?.subscribedUsers?.includes(channel._id)?"SUBSCRIBED":"SUBSCRIBE"}</Subscribe>
+            {currentUser?.subscribedUsers?.includes(channel?._id)?"SUBSCRIBED":"SUBSCRIBE"}</Subscribe>
         </Channel>
         <Hr />
-        <Comments videoId={currentVideo._id}/>
+        <Comments videoId={currentVideo?._id}/>
       </Content>
-     <Recommendation tags={currentVideo.tags}/>
+     <Recommendation tags={currentVideo?.tags}/>
     </Container>
   );
 };
