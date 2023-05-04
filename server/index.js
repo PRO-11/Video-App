@@ -8,7 +8,11 @@ import commentRoutes from "./routes/comment.js"
 import cookieParser from "cookie-parser"
 import cors from "cors"
 import path from "path"
+import { fileURLToPath } from 'url';
+
 const app=express()
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config()
 const connect=()=>{
@@ -38,6 +42,8 @@ app.use((err,req,res,next)=>{
         message
     })
 })
+
+console.log(path.resolve(__dirname,'build'))
 
 if(process.env.NODE_ENV=='production'){
   
