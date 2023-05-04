@@ -45,14 +45,20 @@ app.use((err,req,res,next)=>{
 
 console.log(path.resolve(__dirname,'build'))
 
-if(process.env.NODE_ENV=='production'){
+app.get('/', (req, res) => {
+  res.send('Hey this is my API running 🥳')
+})
+
+
+// if(process.env.NODE_ENV=='production'){
   
-  console.log("Serve file")
-  app.get('/',(req,res)=>{
-      app.use(express.static(path.resolve(__dirname,'build')))
-      res.sendFile(path.resolve(__dirname,'build','index.html'))
-  })
-}
+//   console.log("Serve file")
+//   app.get('/',(req,res)=>{
+//       app.use(express.static(path.resolve(__dirname,'build')))
+//       res.sendFile(path.resolve(__dirname,'build','index.html'))
+//   })
+// }
+
 
 app.listen(8081,()=>{
     connect()
