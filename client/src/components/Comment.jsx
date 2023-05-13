@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { useEffect } from "react";
 import axios from "axios";
+import { backendUrl } from "../baseUrl";
 const Container = styled.div`
   display: flex;
   gap: 10px;
@@ -42,7 +43,7 @@ const Comment = ({comment}) => {
   const [channel,setChannel]=useState({})
   useEffect(()=>{
     const fetchComment=async()=>{
-      const res=await axios.get(`/users/find/${comment._id}`)
+      const res=await axios.get(`${backendUrl}/users/find/${comment._id}`)
       setChannel(res.data)
     }
     fetchComment()

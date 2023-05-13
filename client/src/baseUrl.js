@@ -1,0 +1,1 @@
+export const backendUrl= "https://pro-player-seven.vercel.app/api";

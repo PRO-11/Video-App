@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Card from "../components/Card";
-
+import { backendUrl } from "../baseUrl";
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -15,7 +15,7 @@ function Search() {
 
   useEffect(()=>{
     const fetchVideos=async()=>{
-      const res=await axios.get(`/videos/search${query}`)
+      const res=await axios.get(`${backendUrl}/videos/search${query}`)
       setVideos(res.data)
     }
     fetchVideos()

@@ -2,8 +2,9 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {getAuth,GoogleAuthProvider} from "firebase/auth"
+console.log(process.env.REACT_APP_FIREBASE_KEY)
 const firebaseConfig = {
-  apiKey:"AIzaSyBqBYHUq5N8Do84Zto-JFGcBdl9OlLqryw",
+  apiKey:process.env.REACT_APP_FIREBASE_KEY,
   authDomain: "video-app-f2221.firebaseapp.com",
   projectId: "video-app-f2221",
   storageBucket: "video-app-f2221.appspot.com",

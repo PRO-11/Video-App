@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Comment from "./Comment";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import { backendUrl } from "../baseUrl";
 const Container = styled.div``;
 
 const NewComment = styled.div`
@@ -33,7 +34,7 @@ const Comments = ({videoId}) => {
   useEffect(()=>{
     const fetchComment=async()=>{
       try{
-        const res=await axios.get(`/comments/${videoId}`)
+        const res=await axios.get(`${backendUrl}/comments/${videoId}`)
         setComment(res.data)
       }
       catch(err){

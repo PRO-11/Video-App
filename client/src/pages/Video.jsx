@@ -15,6 +15,7 @@ import { dislike, fetchSuccess, like } from "../redux/videoSlice";
 import { format } from "timeago.js";
 import { subscription } from "../redux/userSlice";
 import Recommendation from "../components/Recommendation";
+import { backendUrl } from "../baseUrl";
 
 const Container = styled.div`
   display: flex;
@@ -130,7 +131,7 @@ const Video = () => {
      useEffect(()=>{
         const fetchData=async()=>{
           try{
-            const videoRes=await axios.get(`/videos/find/${path}`)
+            const videoRes=await axios.get(`${backendUrl}/videos/find/${path}`)
             const channelRes=await  axios.get(`/users/find/${videoRes.data.userId}`)
             console.log(videoRes.data)
             setChannel(channelRes.data)

@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { loginFailure, loginStart, loginSuccess } from "../redux/userSlice";
 import {auth,provider} from "../firebase"
 import {signInWithPopup} from "firebase/auth"
+import { backendUrl } from "../baseUrl";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -76,7 +77,7 @@ const SignIn = () => {
     e.preventDefault()
     dispatch(loginStart)
     try {
-      const res=await axios.post("/auth/signin",{name,password})
+      const res=await axios.post(`${backendUrl}/auth/signin`,{name,password})
       console.log(res.data)
       dispatch(loginSuccess(res.data))
     } catch (err) {
@@ -87,7 +88,7 @@ const SignIn = () => {
     e.preventDefault()
     dispatch(loginStart)
     try {
-      const res=await axios.post("/auth/signup",{name,password,email})
+      const res=await axios.post(`${backendUrl}/auth/signup`,{name,password,email})
       console.log(res.data)
       alert('Account Created! Login To continue')
       
