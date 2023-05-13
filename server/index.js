@@ -8,10 +8,12 @@ import commentRoutes from "./routes/comment.js"
 import cookieParser from "cookie-parser"
 import cors from "cors"
 import path from "path"
+import connectToMongo from "./db.js"
 import { fileURLToPath } from 'url';
 
 dotenv.config()
 const app=express()
+connectToMongo()
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
 
