@@ -12,8 +12,8 @@ import { fileURLToPath } from 'url';
 
 dotenv.config()
 const app=express()
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 
 const connect=()=>{
   mongoose.connect(process.env.MONGO).then(()=>{
@@ -43,11 +43,11 @@ app.use((err,req,res,next)=>{
     })
 })
 
-console.log(path.resolve(__dirname,'build'))
 
-app.get('/', (req, res) => {
-  res.send('Hey this is my API running 🥳')
-})
+
+// app.get('/', (req, res) => {
+//   res.send('Hey this is my API running 🥳')
+// })
 
 
 // if(process.env.NODE_ENV=='production'){
