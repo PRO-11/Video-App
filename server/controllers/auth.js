@@ -33,7 +33,8 @@ export  const signin=async(req,res,next)=>{
        const token=jwt.sign({id:user._id},process.env.JWT)
        const {password,...others}=user._doc;
 
-       res.cookie("access_token",token ,{ httpOnly: true, domain:'https://pro-player-seven.vercel.app' })
+       res.cookie("access_token",token ,{ httpOnly: true, domain:'https://pro-player-seven.vercel.app',sameSite: 'strict', // Restrict cookie to same-site requests
+       path: '/', })
        .status(200)
        .json(others)
 
