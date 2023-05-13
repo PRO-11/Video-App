@@ -31,22 +31,10 @@ export  const signin=async(req,res,next)=>{
        if(!isCorrect) return next(createError(400,"Wrong Credentials!"))
 
        const token=jwt.sign({id:user._id},process.env.JWT)
-       const cookieValue = token;
        const {password,...others}=user._doc;
-const cookieOptions = {
-    httpOnly: true, // Prevent client-side JavaScript access
-    secure: true, // Only send the cookie over HTTPS (requires SSL)
-    maxAge: 3600, // Cookie expiration time in seconds (1 hour in this example)
-    sameSite: 'strict', // Restrict cookie to same-site requests
-    path: '/', // Set the cookie path to root ("/") or any other path you need
-    domain: 'https://pro-player-seven.vercel.app' // Set the cookie domain
-  };
 
-  // Set the cookie header in the response
-  res.setHeader('Set-Cookie', `access_token=${cookieValue}; ${Object.entries(cookieOptions).map(([key, value]) => `${key}=${value}`).join('; ')}`);
-    //    res.cookie("access_token",token ,{ httpOnly: true, domain:'https://pro-player-seven.vercel.app',sameSite: 'strict',path: '/', // Restrict cookie to same-site requests
-    //    path: '/', })
-       res.status(200)
+       res.cookie("access_token",token ,{ httpOnly: true, domain: process.env.NODE_ENV === 'development' ? '.localhost' : '.domain.com'})
+       .status(200)
        .json(others)
 
     }
