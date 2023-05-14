@@ -13,17 +13,17 @@ import { fileURLToPath } from 'url';
 
 dotenv.config()
 const app=express()
-// connectToMongo()
+connectToMongo()
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
 
-const connect=()=>{
-  mongoose.connect(process.env.MONGO).then(()=>{
-    console.log("Connected to db")
-  }).catch((err)=>{
-    throw err
-  })
-}
+// const connect=()=>{
+//   mongoose.connect(process.env.MONGO).then(()=>{
+//     console.log("Connected to db")
+//   }).catch((err)=>{
+//     throw err
+//   })
+// }
 app.use(cors());
 app.use(cookieParser())
 app.use(express.json())
@@ -63,6 +63,6 @@ app.use((err,req,res,next)=>{
 
 const PORT=process.env.PORT||8081
 app.listen(PORT,()=>{
-    connect()
+ 
     console.log("Server is running on port 8081")
 })
