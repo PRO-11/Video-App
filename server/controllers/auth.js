@@ -32,8 +32,8 @@ export  const signin=async(req,res,next)=>{
 
        const token=jwt.sign({id:user._id},process.env.JWT)
        const {password,...others}=user._doc;
-
-       res.cookie("access_token",token ,{ httpOnly: true, domain: process.env.NODE_ENV === 'development' ? '.localhost' : '.vercel.app'})
+      
+       res.cookie("access_token",token ,{ httpOnly: true,})
        .status(200)
        .json(others)
 
