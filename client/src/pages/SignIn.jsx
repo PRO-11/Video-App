@@ -77,7 +77,7 @@ const SignIn = () => {
     e.preventDefault()
     dispatch(loginStart)
     try {
-      const res=await axios.post(`/auth/signin`,{name,password})
+      const res=await axios.post(`${backendUrl}/auth/signin`,{name,password})
       console.log(res)
       dispatch(loginSuccess(res.data))
     } catch (err) {
